@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let lastId = 0;
 
-// the code in the below are the vanilla redux actionTypes variable and action creator function
+// the codes below are the vanilla redux action types variable and action creator function
 
 // const BUG_ADDED = "BugAdded";
 // const BUG_REMOVED = "BugRemoved";
