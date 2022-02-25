@@ -59,18 +59,18 @@ export default slice.reducer;
 // creating reducer function using createReducer utility function by redux toolkit
 
 // export default createReducer([], {
-//   bugAdded: (bugs, action) => {
+//   [BugAdded.type]: (bugs, action) => {
 //     bugs.push({
 //       id: ++lastId,
 //       description: action.payload.description,
 //       resolved: false,
 //     });
 //   },
-//   bugResolved: (bugs, action) => {
+//   [BugResolved.type]: (bugs, action) => {
 //     const index = bugs.findIndex((bug) => bug.id === action.payload.id);
 //     bugs[index].resolved = true;
 //   },
-//   bugRemoved: (bugs, action) => {
+//   [BugRemoved.type]: (bugs, action) => {
 //     const index = bugs.findIndex((bug) => bug.id === action.payload.id);
 //     bugs.splice(index, 1);
 //   },
