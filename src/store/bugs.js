@@ -1,4 +1,6 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+
+let lastId = 0;
 
 // the code in the below are the vanilla redux actionTypes variable and action creator function
 
@@ -22,32 +24,57 @@ import { createAction, createReducer } from "@reduxjs/toolkit";
 
 // start creating actions using the utility function provided by redux toolkit
 
-export const BugAdded = createAction("bugAdded");
-export const BugResolved = createAction("bugResolved");
-export const BugRemoved = createAction("bugRemoved");
+// export const BugAdded = createAction("bugAdded");
+// export const BugResolved = createAction("bugResolved");
+// export const BugRemoved = createAction("bugRemoved");
 
 // end of the creating actions by utility function
 
-let lastId = 0;
-
-// reducer function using redux toolkit
-export default createReducer([], {
-  bugAdded: (bugs, action) => {
-    bugs.push({
-      id: ++lastId,
-      description: action.payload.description,
-      resolved: false,
-    });
-  },
-  bugResolved: (bugs, action) => {
-    const index = bugs.findIndex((bug) => bug.id === action.payload.id);
-    bugs[index].resolved = true;
-  },
-  bugRemoved: (bugs, action) => {
-    const index = bugs.findIndex((bug) => bug.id === action.payload.id);
-    bugs.splice(index, 1);
+// creating action types, actions and reducer function by a single function called createSlice utility function provided by redux toolkit
+const slice = createSlice({
+  name: "bugs",
+  initialState: [],
+  reducers: {
+    bugAdded: (bugs, action) => {
+      bugs.push({
+        id: ++lastId,
+        description: action.payload.description,
+        resolved: false,
+      });
+    },
+    bugResolved: (bugs, action) => {
+      const index = bugs.findIndex((bug) => bug.id === action.payload.id);
+      bugs[index].resolved = true;
+    },
+    bugRemoved: (bugs, action) => {
+      const index = bugs.findIndex((bug) => bug.id === action.payload.id);
+      bugs.splice(index, 1);
+    },
   },
 });
+console.log(slice);
+export const { bugAdded, bugRemoved, bugResolved } = slice.actions;
+export default slice.reducer;
+
+// creating reducer function using createReducer utility function by redux toolkit
+
+// export default createReducer([], {
+//   bugAdded: (bugs, action) => {
+//     bugs.push({
+//       id: ++lastId,
+//       description: action.payload.description,
+//       resolved: false,
+//     });
+//   },
+//   bugResolved: (bugs, action) => {
+//     const index = bugs.findIndex((bug) => bug.id === action.payload.id);
+//     bugs[index].resolved = true;
+//   },
+//   bugRemoved: (bugs, action) => {
+//     const index = bugs.findIndex((bug) => bug.id === action.payload.id);
+//     bugs.splice(index, 1);
+//   },
+// });
 
 // plain reducer function
 // export default function reducer(state = [], action) {
