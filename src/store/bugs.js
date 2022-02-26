@@ -52,7 +52,9 @@ const slice = createSlice({
     },
   },
 });
-console.log(slice);
+export const getUnresolvedBugs = (state) =>
+  state.entities.bugs.filter((bug) => !bug.resolved);
+
 export const { bugAdded, bugRemoved, bugResolved } = slice.actions;
 export default slice.reducer;
 
